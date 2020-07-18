@@ -2,9 +2,9 @@ using System;
 
 namespace playCS.playThreadsWorld
 {
-    public class playAsyncAwait
+    public class PlayAsyncAwait
     {
-        public static void play()
+        public static void Play()
         {
             var c = typeof(string);
             Console.WriteLine(c);
