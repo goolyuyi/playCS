@@ -13,9 +13,9 @@ namespace playCS
             // new PlayBasicType();
             // ConsoleEnhance.Rainbow();
             // PlayLinq.Play();
-            // PlayAsyncAwait.Play();
             // PlayAdvance.Play();
-            PlayTPL.Play();
+            PlayAsyncAwait.Play();
+            // PlayTPL.Play();
         }
     }
 }
