@@ -5,7 +5,7 @@ namespace CancelParallelLoops
     using System.Threading;
     using System.Threading.Tasks;
 
-    public class Program
+    public class CancelParallelLoops
     {
         public static void Play()
         {

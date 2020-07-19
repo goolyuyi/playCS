@@ -1,4 +1,5 @@
 ﻿using System;
+using playCS.PlayParallel;
 using playCS.playThreadsWorld;
 
 namespace playCS
@@ -15,8 +16,11 @@ namespace playCS
             // PlayLinq.Play();
             // PlayAdvance.Play();
             // PlayAsyncAwait.Play();
-            CancelParallelLoops.Program.Play();
-            // PlayTPL.Play();
+            // CancelParallelLoops.CancelParallelLoops.Play();
+            // PlayParallel.PlayParallel.Play();
+            
+            PlayTaskAndParallel.Play();
+            
         }
     }
 }
