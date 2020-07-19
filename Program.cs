@@ -14,7 +14,8 @@ namespace playCS
             // ConsoleEnhance.Rainbow();
             // PlayLinq.Play();
             // PlayAdvance.Play();
-            PlayAsyncAwait.Play();
+            // PlayAsyncAwait.Play();
+            CancelParallelLoops.Program.Play();
             // PlayTPL.Play();
         }
     }
