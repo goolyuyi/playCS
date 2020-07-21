@@ -6,6 +6,11 @@ namespace playCS
 {
     class Program
     {
+        static void Main2(string[] args)
+        {
+            Console.WriteLine("Main2!");
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
@@ -18,9 +23,11 @@ namespace playCS
             // PlayAsyncAwait.Play();
             // CancelParallelLoops.CancelParallelLoops.Play();
             // PlayParallel.PlayParallel.Play();
-            
-            PlayTaskAndParallel.Play();
-            
+
+            // PlayTaskAndParallel.Play();
+            // PlayTuple.Play();
+
+            PlayReflection.Play();
         }
     }
 }

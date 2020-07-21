@@ -8,6 +8,15 @@ namespace playCS
         public static void Play()
         {
             Methods.PlayLocalMethod();
+            AtSymbolAndparamsKeyWord(1, 2, 3);
+        }
+
+        static void AtSymbolAndparamsKeyWord(params int[] inn)
+        {
+            foreach (var @ins in inn)
+            {
+                Console.WriteLine(@ins);
+            }
         }
     }
 
@@ -17,6 +26,7 @@ namespace playCS
         {
             return i.Length + 2;
         }
+
 
         public static void ExtMethod()
         {

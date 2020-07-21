@@ -5,6 +5,7 @@ namespace playCS
     public class PlayLambda
     {
         delegate int DeleFunc(int x);
+
         public PlayLambda()
         {
             DeleFunc deleFuncNLambda = (int x) =>
@@ -13,7 +14,7 @@ namespace playCS
                 return x + 1;
             };
 
-            Console.WriteLine("{0},{1:N}",deleFuncNLambda,deleFuncNLambda(5));
+            Console.WriteLine("{0},{1:N}", deleFuncNLambda, deleFuncNLambda(5));
         }
     }
 }

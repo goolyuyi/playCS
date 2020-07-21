@@ -12,7 +12,43 @@ namespace playCS.PlayParallel
             // SimpleTask();
             // InputOutputObjAndFactory();
             // CancelIt();
-            ContinueTask连续任务();
+            // ContinueTask连续任务();
+            except();
+        }
+
+
+        static void except()
+        {
+            var task1 = Task<int>.Run(() =>
+            {
+                Console.WriteLine("Executing task {0}",
+                    Task.CurrentId);
+                throw new Exception("bad op!");
+                return 54;
+            });
+            var continuation = task1.ContinueWith((antecedent) =>
+            {
+                Console.WriteLine("task2");
+                var e = antecedent.Exception;
+                Console.WriteLine("last err:" + e);
+                Console.WriteLine("Executing continuation task {0}",
+                    Task.CurrentId);
+                // Console.WriteLine("Value from antecedent: {0}",
+                    // antecedent.Result);
+                throw new InvalidOperationException("err2");
+            });
+            try
+            {
+                Task.WaitAll(task1, continuation);
+            }
+            catch (AggregateException ae)
+            {
+                Console.WriteLine("ae:"+ae.InnerExceptions.Count);
+                // Console.WriteLine(task1.Exception);
+                // Console.WriteLine(continuation.Exception);
+                foreach (var ex in ae.InnerExceptions)
+                    Console.WriteLine(ex.Message);
+            }
         }
 
         static void ContinueTask连续任务()
@@ -32,7 +68,7 @@ namespace playCS.PlayParallel
                 Console.WriteLine("last is " + lastTask.Result);
             });
             t.Start();
-            
+
             //See also
             // Task.Factory.ContinueWhenAll()
             // Task.Factory.ContinueWhenAny()
