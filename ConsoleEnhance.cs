@@ -47,6 +47,7 @@ namespace playCS
             Console.ResetColor();
         }
 
+
         public static void HrLine()
         {
         }
