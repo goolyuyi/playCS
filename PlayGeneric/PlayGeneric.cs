@@ -2,14 +2,12 @@ using System;
 
 namespace playCS.PlayGeneric
 {
-    //约束器
-    //https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters//where T: struct
-    //使用约束器则可调用 T 的方法
-    class Gentle<T> where T : new()
+    class Generic<T> where T : new()
     {
+        //NOTE able to call new T() here
     }
 
-    class Gentle2<T> where T : class, IComparable<T>
+    class Generic2<T> where T : class, IComparable<T>
     {
         public static bool Bigger(T a1, T a2)
         {
@@ -17,73 +15,34 @@ namespace playCS.PlayGeneric
         }
     }
 
-    //Stack<Order> orders = new Stack<Order>();
-    //customers = new Stack<Customer>();
-    //Stack<Order> orders = new Stack<Order>();
-    //这里(对于一切的引用类型)只会创建一个专版的 Stack(不是对于 Order 和 Customer 都创建),减少代码量
-
-    //泛型不用 boxing 和 unboxing
-    //所以更快
-    //List<int> just ref a int value even if it's a value type
-
-    //预先定义好的泛型工具:
-    //Predicate<T> 断言 delegate
-    //Converter<TInput,TOutput> 转化 delegate
-    //Comparison<T> 比较delegate
-    //Action<T> void 方法的delegate
-
-
     class Variant
     {
         static void Play()
         {
-            //先来了解一下协变逆变
-            Animal b = new Animal();
-            Life l = new Life();
-            Cat d = new Cat();
-            Ginger g = new Ginger();
+            //1.继承关系:Life < Animal < Cat < Ginger
+            //in - 协变 
+            //out - 逆变
 
-            //ok!
-            Cat dr = AnimalToCat(b);
-            //ok!
-            Animal br = AnimalToCat(b);
-            //ok!
-            Cat dr2 = AnimalToCat(d);
-            //ok!
-            Animal br2 = AnimalToCat(d);
-            //以上4种都是合理的
-            //也仅限于这4种
+            var life = new Life();
+            var animal = new Animal();
+            var cat = new Cat();
+            var ginger = new Ginger();
 
-            //返回值只能抗变
-            // Ginger gr = cov(b);
+            //NOTE only works with in/out key word by Func definition
+            // public delegate TResult Func<in T, out TResult>(T arg);
+            Func<Cat, Animal> f = (input) => { return input; };
 
-            //参数只能协变
-            //Cat dr3 = cov(l);
+            f(cat);
+            f(ginger);
+            //BAD!
+            //f(animal);
 
-
-            //那么对于接口也是
-            IFace<Animal> baseObj = new FaceImpl<Animal>();
-            IFace<Cat> derivedObj = new FaceImpl<Cat>();
-
-            //逆变
-            IFace<Animal> v = derivedObj;
-
-            //协变
-            // A<Derived> vv = baseObj;
+            Life resLife = f(cat);
+            Animal resAnimal = f(cat);
+            //BAD!
+            //Cat resCat = f(cat);
         }
 
-        interface IFace<out T>
-        {
-        }
-
-        static Cat AnimalToCat(Animal input)
-        {
-            return new Cat();
-        }
-
-        class FaceImpl<T> : IFace<T>
-        {
-        }
 
         class Life
         {
