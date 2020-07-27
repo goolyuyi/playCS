@@ -6,6 +6,7 @@ namespace playCS
 {
     class Program
     {
+        //TODO find a way to switch entry point
         static void Main2(string[] args)
         {
             Console.WriteLine("Main2!");
@@ -15,19 +16,19 @@ namespace playCS
         {
             Console.WriteLine("Hello World!");
 
-            // new PlayLambda();
-            // new PlayBasicType();
             // ConsoleEnhance.Rainbow();
-            // PlayLinq.Play();
+            PlayLinq.Play();
             // PlayAdvance.Play();
             // PlayAsyncAwait.Play();
             // CancelParallelLoops.CancelParallelLoops.Play();
             // PlayParallel.PlayParallel.Play();
-
             // PlayTaskAndParallel.Play();
             // PlayTuple.Play();
-
-            PlayReflection.Play();
+            // PlayReflection.Play();
+            // PlayReflectionAdvance.Play();
+            // PlayEvent.Play();
+            // PlayUnicorn.Play();
+            // PlayNull.Play();
         }
     }
 }

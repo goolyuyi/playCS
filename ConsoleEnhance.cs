@@ -7,7 +7,7 @@ namespace playCS
 {
     public static class ConsoleEnhance
     {
-        static Random random = new Random();
+        static readonly Random random = new Random();
 
         // static IList<ConsoleColor> consoleColors = ((IList<ConsoleColor>) Enum.GetValues(typeof(ConsoleColor)));
         static List<ConsoleColor> coloredConsoleColors = new List<ConsoleColor>()
@@ -39,9 +39,6 @@ namespace playCS
 
         public static void RainbowWriteLine(string args)
         {
-            //TODO reflect to pass though everything!
-            //https://stackoverflow.com/questions/13838288/c-sharp-passing-all-the-method-arguments-to-another-method
-
             Console.ForegroundColor = coloredConsoleColors[random.Next(0, coloredConsoleColors.Count)];
             Console.WriteLine(args);
             Console.ResetColor();

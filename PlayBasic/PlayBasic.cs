@@ -1,19 +1,31 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace playCS
 {
-    public class PlayBasicType
+    public static class PlayBasic
     {
-        public PlayBasicType()
+        static void Func(int[] a, object b)
         {
-            var longList = new List<string> {"a", "b", "5555"};
-            Console.WriteLine("{0}", string.Join(",", longList));
+        }
 
-            var arrayInt = new int[] {1, 2, 3, 4, 5};
-            Console.WriteLine(arrayInt);
-            Console.WriteLine(String.Join(",", arrayInt));
 
+        public static void Play()
+        {
+            var strList = new List<string> {"a", "b", "5555"};
+            Console.WriteLine("{0}", string.Join(",", strList));
+
+            var intArray = new int[] {1, 2, 3, 4, 5};
+            //NOTE ^n last n (c# 8.0)
+            Console.WriteLine(intArray[^1]);
+            //c# 8.0
+            Console.WriteLine(intArray[1..2]);
+
+            Console.WriteLine(intArray);
+            Console.WriteLine(String.Join(",", intArray));
+
+            //using will call IDispose automatically
             using (var dog = new Dog(name: "mic", age: 13))
             {
                 Console.WriteLine(dog);
@@ -21,52 +33,32 @@ namespace playCS
 
             var cat = new Cat(null, secretName: "jelly") {Name = "ginger", Age = 10};
 
-
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(cat.ToString());
             Console.ResetColor();
 
+            //nullable
             int? ni = 5;
             ni = null;
-            Console.WriteLine(ni ?? 0);
-            var c = 5 + ni;
+            Console.WriteLine(ni ?? 0); //means: if null then 0 
+            var c = 5 + ni; //null
             Console.WriteLine(c);
-            
+
+            //enum
             WeaponStyle s = WeaponStyle.Knife | WeaponStyle.Pistol;
             Console.WriteLine(value: $"{s}, Knife:{s.HasFlag(WeaponStyle.Knife)}");
 
-            var uni = new Unicorn {Name = "Jane!", Color = "red"};
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(uni[2]);
-            Console.WriteLine(uni);
-            Console.WriteLine(Unicorn.Big("aaaaaaa"));
-            Console.ResetColor();
+            //convert
+            //is as (type)
+            //NOTE is const/null is also works
+            if (strList is ICollection<string> strCol)
+            {
+                //NOTE 快捷语法 strCol is a ICollection<string> here
+                Console.WriteLine(strCol.Count);
+            }
 
-
-            var names1 = ("Peter", "Parker");
-            Console.WriteLine(names1.Item1);
-            var tp = names1.ToTuple();
-
-            (string FirstName, string LastName) names2 = ("Peter", "Parker");
-            Console.WriteLine(names2.FirstName);
-            var names3 = (First: "Peter", Last: "Parker");
-            Console.WriteLine(names3.Last);
-
-            //deconstruct
-            (string firstName, string lastName) = names3;
-            var (_, last) = names3;
-            Console.WriteLine($"{firstName} {lastName} {last}");
-
-            Console.WriteLine(P((x) => x * 2)(6));
-        }
-
-        delegate int VV(int x);
-
-        VV P(VV vvfunc)
-        {
-            var mm = 5;
-            VV v = x => vvfunc(x) + mm;
-            return v;
+            //init params
+            Func(a: new[] {1, 2, 3, 4}, new { });
         }
     }
 
@@ -99,10 +91,6 @@ namespace playCS
         }
     }
 
-    class Bull
-    {
-    }
-
     class Dog : IDisposable
     {
         public Dog(string name, int age)
@@ -118,7 +106,7 @@ namespace playCS
 
         string _name;
         int _age;
-        
+
         public override string ToString()
         {
             return $"{nameof(_name)}: {_name}, {nameof(_age)}: {_age}";

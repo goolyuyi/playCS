@@ -54,7 +54,18 @@ namespace playCS
         {
             // PlayAssembly();
             // P2();
-            PlayMethods();
+            // PlayMethods();
+            PlayMembers();
+        }
+
+        private static void PlayMembers()
+        {
+            var t = typeof(SomeMethods);
+            var ms = t.GetMembers();
+            foreach (var memberInfo in ms)
+            {
+                Console.WriteLine(memberInfo);
+            }
         }
 
         public static void P2()

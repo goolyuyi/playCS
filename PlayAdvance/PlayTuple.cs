@@ -8,6 +8,16 @@ namespace playCS
         {
             var t = (50, 50);
             Console.WriteLine(t);
+
+            (string FirstName, string LastName) names2 = ("Peter", "Parker");
+            Console.WriteLine(names2.FirstName);
+            var names3 = (First: "Peter", Last: "Parker");
+            Console.WriteLine(names3.Last);
+
+            //deconstruct
+            (string firstName, string lastName) = names3;
+            var (_, last) = names3;
+            Console.WriteLine($"{firstName} {lastName} {last}");
         }
     }
 }
