@@ -49,6 +49,17 @@ namespace playCS
             Console.WriteLine(intArray);
             Console.WriteLine(String.Join(",", intArray));
 
+            //num
+            var intA = 111_222;//111_222
+            var intB = 0x111_222;//111 222 in hex
+            var intC = 0b1101_0010_1001;//1101 0010 1001 in binary
+            var longA = 111_222L;
+            var longB = 111_222UL;//unsigned
+            var longC = 0x1f_f1L;//hex
+            var floatA = 1.23f;//float
+            var doubleA = 1.23d;//double
+            var decimalA = 1.23m;//decimal 128 bit!
+            
             //using will call IDispose automatically
             using (var dog = new Dog(name: "mic", age: 13))
             {

@@ -16,19 +16,8 @@ namespace playCS
         {
             Console.WriteLine("Hello World!");
 
-            // ConsoleEnhance.Rainbow();
-            PlayLinq.Play();
-            // PlayAdvance.Play();
-            // PlayAsyncAwait.Play();
-            // CancelParallelLoops.CancelParallelLoops.Play();
-            // PlayParallel.PlayParallel.Play();
-            // PlayTaskAndParallel.Play();
-            // PlayTuple.Play();
-            // PlayReflection.Play();
-            // PlayReflectionAdvance.Play();
-            // PlayEvent.Play();
-            // PlayUnicorn.Play();
-            // PlayNull.Play();
+            PlayBasic.Play();
+            // PlayLinq.Play();
         }
     }
 }

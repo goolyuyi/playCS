@@ -15,7 +15,6 @@ namespace playCS
                 Console.WriteLine("Run");
             }
         }
-
         void Stop();
     }
 
@@ -59,13 +58,18 @@ namespace playCS
 
             //Indexer Unicorn
             Console.WriteLine(unicorn[5]);
-            
-            
+
+            //Any Param Unicorn
+            unicorn.AnyParams(1, 2, 3, "aaa", "bbb");
             //Convert Unicorn
             //NOTE Very Ambiguity,DONT USE OFTEN! Only use it on mathematically purpose
             byte[] b = unicorn;
-            Unicorn bb = (Unicorn)b;
-            
+            Unicorn bb = (Unicorn) b;
+
+            //Operator Unicorn
+            Console.WriteLine(unicorn + c);
+
+            //异常筛选
         }
     }
 
@@ -95,6 +99,15 @@ namespace playCS
 
         public Unicorn()
         {
+        }
+
+
+        public void AnyParams(params object[] inn)
+        {
+            foreach (var @ins in inn)
+            {
+                Console.WriteLine(@ins);
+            }
         }
 
         #region #Equality
@@ -231,7 +244,11 @@ namespace playCS
             return res;
         }
 
-        public static Unicorn operator +(Unicorn a,Unicorn b)
+        #endregion
+
+        #region #Operators
+
+        public static Unicorn operator +(Unicorn a, Unicorn b)
         {
             var res = new Unicorn();
             res.Name = a.Name + b.Name;
@@ -240,7 +257,5 @@ namespace playCS
         }
 
         #endregion
-
-        //op override
     }
 }

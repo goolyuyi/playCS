@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace playCS
 {
-    public class PlayNull
+    public class PlayNullable
     {
         public static void Func(string? a)
         {
