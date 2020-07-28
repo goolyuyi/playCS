@@ -4,6 +4,28 @@ using System.Collections.Generic;
 
 namespace playCS
 {
+    struct AStruct
+    {
+        public string Name;
+
+        public AStruct(string name)
+        {
+            Name = name;
+        }
+    }
+
+    [Flags]
+    enum WeaponStyle
+    {
+        Knife = 1,
+        Sword = 2,
+        Blade = 4,
+        Pistol = 8,
+        Rifle = 16
+    }
+
+    
+
     public static class PlayBasic
     {
         static void Func(int[] a, object b)
@@ -13,6 +35,8 @@ namespace playCS
 
         public static void Play()
         {
+            
+            
             var strList = new List<string> {"a", "b", "5555"};
             Console.WriteLine("{0}", string.Join(",", strList));
 
@@ -59,19 +83,15 @@ namespace playCS
 
             //init params
             Func(a: new[] {1, 2, 3, 4}, new { });
+            
+            dynamic d = 1;
+            var testSum = d + 3;
+            // Rest the mouse pointer over testSum in the following statement.
+            System.Console.WriteLine(testSum);
         }
     }
 
 
-    [Flags]
-    enum WeaponStyle
-    {
-        Knife = 1,
-        Sword = 2,
-        Blade = 4,
-        Pistol = 8,
-        Rifle = 16
-    }
 
     struct Cat
     {

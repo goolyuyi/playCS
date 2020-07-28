@@ -3,11 +3,36 @@ using System.Collections.Generic;
 
 namespace playCS
 {
+    #region Method Extension
+
+    enum MusicStyle
+    {
+        Techno,
+        House,
+        Trance,
+        Folk,
+        Gothic
+    }
+
+    static class MusicStyleExt
+    {
+        public static bool isElectricMusic(this MusicStyle style)
+        {
+            return (style == MusicStyle.Techno || style == MusicStyle.House || style == MusicStyle.Trance);
+        }
+    }
+
+    #endregion
+
     public static class PlayAdvance
     {
         public static void Play()
         {
-            Methods.PlayLocalMethod();
+            //扩展方法
+            var s = MusicStyle.Techno;
+            Console.WriteLine($"{s} is electric?:{s.isElectricMusic()}");
+
+            //任意参数
             AtSymbolAndparamsKeyWord(1, 2, 3);
         }
 
@@ -17,73 +42,6 @@ namespace playCS
             {
                 Console.WriteLine(@ins);
             }
-        }
-    }
-
-    public static class ExtClass
-    {
-        public static int Len2(this String i)
-        {
-            return i.Length + 2;
-        }
-
-
-        public static void ExtMethod()
-        {
-        }
-    }
-
-    class Methods
-    {
-        private static string ss;
-
-        static ref string StrMake()
-        {
-            return ref ss;
-        }
-
-        //ref must init outside
-        //but
-        //out must init/create inside!
-        static void OutMake(out List<string> s)
-        {
-            s = new List<string>();
-            s.Add("aaaa");
-        }
-
-        public static void PlayRefReturn()
-        {
-            List<string> s = new List<string>();
-            OutMake(out s);
-        }
-
-
-        public static void PlayLocalMethod()
-        {
-            //why?
-            //清晰
-            //可递归
-            //避免堆内存分配,内存更少
-            //静态分析
-
-            //DO THIS
-            int count = 0;
-
-            string LocalFunc(string s)
-            {
-                count++;
-                return $"{s}::{s.Length}";
-            }
-
-            // Console.WriteLine(LocalFunc("aaaaaa"));
-
-            //NOT THIS
-            Func<string, string> LocalLamda = (string s) =>
-            {
-                count++;
-                return $"{s}::{s.Length}";
-            };
-            Console.WriteLine(LocalLamda("aaaaa"));
         }
     }
 }
