@@ -6,32 +6,34 @@ namespace playCS
 {
     public class PlayNullable
     {
-        public static void Func(string? a)
+        static void Func(string? a)
         {
         }
 
-        public static void Func2(string a)
+        static void Func2(string a)
         {
         }
 
-        
-        public static void Basic()
+
+        static void Basic()
         {
             string? a = null;
             int[]? b = null;
 
             //NOTE a is null
             Console.WriteLine(a);
+            
             //NOTE null safe: ?.
             Console.WriteLine(a?.Length);
-            //NOTE ?[]
+            
+            //NOTE ?[] null safe
             Console.WriteLine(b?[3]);
 
-            //NOTE only could value or throw
             //a ?? throw new Exception();
+            //NOTE null switch
             var c = a ?? "a is null";
 
-            //??=
+            //NOTE ??= null assign
             c = null;
             c ??= "not null";
 
@@ -44,7 +46,7 @@ namespace playCS
             {
                 List<string>? l = null;
                 //suppress warning
-                Console.WriteLine(l!.Count);
+                Console.WriteLine(l?.Count);
             }
             catch
             {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO.Pipelines;
 using System.Linq;
 using System.Text;
 
@@ -19,6 +20,8 @@ namespace playCS
 
             public override string ToString()
             {
+
+
                 return
                     $"{nameof(Scores)}: {Scores}, {nameof(First)}: {First}, {nameof(Last)}: {Last}, {nameof(ID)}: {ID} {nameof(Year)}:{Year}";
             }
@@ -167,33 +170,15 @@ namespace playCS
         static void PlayJoinGroup()
         {
             var query = from person in people
-                join pet in dogs on person equals pet.Owner into gj
-                from subpet in gj
-                select new {OwnerName = person.FirstName, PetName = subpet.Name};
+                join pet in cats on person equals pet.Owner into gj
+                select new {OwnerName = person.FirstName, Pets = from g in gj select g.Name};
 
-            var queryEquivalent = from person in people
-                join pet in dogs on person equals pet.Owner
-                select new {OwnerName = person.FirstName, PetName = pet.Name};
             foreach (var x1 in query)
             {
-                Console.WriteLine($"{x1.OwnerName}+++{x1.PetName}");
+                Console.WriteLine($"{x1.OwnerName}+++{string.Join(',', x1.Pets)}");
             }
 
-
-            //but
-            //NOTE group join witch a join keyword has into
-            var query3 = from p in people
-                join pet in dogs on p equals pet.Owner into g
-                select new {p, g};
-            foreach (var x1 in query3)
-            {
-                Console.WriteLine(x1.p);
-                foreach (var pet in x1.g)
-                {
-                    Console.WriteLine("\t\t" + pet);
-                }
-            }
-
+            //TODO
             //REVIEW think about this!
             var query4 = from d in students
                 group d by d.Year
@@ -236,14 +221,14 @@ namespace playCS
 
         private static void StudentQueryBasic()
         {
+            //NOTE linq must start with `from ... in ...`
             var query = from student in students
-                where student.Last.StartsWith("F")
-                from score in student.Scores
-                where score > 90
+                where student.Last.StartsWith("F") && student.Scores.Any((i) => i > 90)
                 select new
                 {
-                    score, last = student.Last, first = student.First
+                    last = student.Last, first = student.First, score = string.Join(',', student.Scores)
                 };
+
             foreach (var i in query) Console.WriteLine(i);
         }
 
@@ -252,6 +237,8 @@ namespace playCS
             //project + flatten
             //NOTE flatten effect
             var query = students.SelectMany(student => { return student.Scores; });
+
+
             Console.WriteLine(query.Average());
             StringBuilder sb = new StringBuilder();
             foreach (var i in query) sb.Append($"{i},");
@@ -317,9 +304,9 @@ namespace playCS
             }
         }
 
+        //TODO
         private static void StudentQueryNest()
         {
-            //REVIEW
             var query = from s in students
                 group s by s.Last[0]
                 into gp1
@@ -360,7 +347,7 @@ namespace playCS
         static void LookupPlay()
         {
             //NOTE
-            //Lookup<string,int> == Dictionary<string,IEnumerable<string>>
+            //Lookup<string,int> == Dictionary<string,IEnumerable<int>>
             //Lookup is immutable
             //Lookup DO NOT have constructor
 
@@ -389,11 +376,10 @@ namespace playCS
         }
 
 
-
         public static void Play()
         {
-            PlayStudentData();
-            LookupPlay();
+            // PlayStudentData();
+            // LookupPlay();
             PlayJoin();
         }
     }

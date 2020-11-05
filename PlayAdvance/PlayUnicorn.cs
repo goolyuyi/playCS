@@ -6,18 +6,6 @@ using System.Text;
 
 namespace playCS
 {
-    public interface Runable
-    {
-        void Run(int times)
-        {
-            foreach (var _ in Enumerable.Range(0, times))
-            {
-                Console.WriteLine("Run");
-            }
-        }
-        void Stop();
-    }
-
     public static class PlayUnicorn
     {
         public static void Play()
@@ -25,11 +13,11 @@ namespace playCS
             var unicorn = new Unicorn() {Name = "Pony", Color = "Blue"};
 
             //Deconstruct Unicorn
-            //NOTE _ means discard
+            //_ means discard
             var (n, c1, _) = unicorn;
             Console.WriteLine($"{n},{c1}");
 
-            //Enum Unicorn
+            //Enum Unicorn use IEnumerable 
             foreach (var s in unicorn)
             {
                 Console.WriteLine(s);
@@ -45,11 +33,11 @@ namespace playCS
             c.Name = "YiJiang";
             Console.WriteLine(c.CompareTo(unicorn) > 0 ? "bigger" : "smaller");
 
-            //Parcial Unicorn
-            unicorn.Da();
+            //Partial Unicorn
+            unicorn.Barking();
 
             //Mixin Unicorn (c# 8.0)
-            if (unicorn is Runable runable)
+            if (unicorn is Runner runable)
             {
                 runable.Run(5);
             }
@@ -61,6 +49,7 @@ namespace playCS
 
             //Any Param Unicorn
             unicorn.AnyParams(1, 2, 3, "aaa", "bbb");
+
             //Convert Unicorn
             //NOTE Very Ambiguity,DONT USE OFTEN! Only use it on mathematically purpose
             byte[] b = unicorn;
@@ -74,11 +63,25 @@ namespace playCS
     }
 
 
+    public interface Runner
+    {
+        //NOTE the default impl for Interface, try to understand it as mixin
+        void Run(int times)
+        {
+            foreach (var _ in Enumerable.Range(0, times))
+            {
+                Console.WriteLine("Run");
+            }
+        }
+
+        void Stop();
+    }
+
     public partial class Unicorn
     {
-        public void Da()
+        public void Barking()
         {
-            Console.WriteLine("Da");
+            Console.WriteLine("DaDa!");
         }
 
         public void Stop()
@@ -88,8 +91,12 @@ namespace playCS
     }
 
 
-    //NOTE unicorn是超级 class,实现了 c#一切功能!
-    public partial class Unicorn : IDisposable, IEnumerable<string>, IEquatable<Unicorn>, ICloneable,
+    public partial class Unicorn :
+        //NOTE unicorn acts like a c# superhero!
+        IDisposable,
+        IEnumerable<string>,
+        IEquatable<Unicorn>,
+        ICloneable,
         IComparable<Unicorn>
     {
         public string Name;
@@ -101,17 +108,16 @@ namespace playCS
         {
         }
 
-
         public void AnyParams(params object[] inn)
         {
-            foreach (var @ins in inn)
+            //NOTE @var means you can use any reserved keyword as var name 
+            foreach (var @var in inn)
             {
-                Console.WriteLine(@ins);
+                Console.WriteLine(@var);
             }
         }
 
         #region #Equality
-
         //NOTE 至少要实现以下3个方法
         // https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/statements-expressions-operators/how-to-define-value-equality-for-a-type
         //rider 自动生成
@@ -167,8 +173,7 @@ namespace playCS
         }
 
         //lambda express
-        public static bool Big(object x) => x?.ToString().Length > 5;
-
+        public static bool Big(object x) => x?.ToString()?.Length > 5;
 
         #region #Enumerable
 
@@ -193,7 +198,7 @@ namespace playCS
 
         //NOTE 这里释放资源
         //NOTE 可 Async: IAsyncDisposable
-        //NOTE using {} syntax
+        //NOTE auto invoke by `using {}` syntax
         public void Dispose()
         {
             Console.WriteLine("Dispose here");

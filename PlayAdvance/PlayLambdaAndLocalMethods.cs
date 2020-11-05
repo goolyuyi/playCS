@@ -24,7 +24,7 @@ namespace playCS
                 return $"{s}::{s.Length}";
             }
 
-            // Console.WriteLine(LocalFunc("aaaaaa"));
+            Console.WriteLine(LocalFunc("aaaaaa"));
 
             //NOT THIS
             Func<string, string> LocalLamda = (string s) =>

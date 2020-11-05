@@ -1,7 +1,7 @@
 ## Key
 * 都在 ThreadPool 上调度
 * 粗粒度:Parallel
-* 细粒度:Task
+* 细粒度:Task 最常用
 * 更细粒度:Thread/ThreadPool
 
 ## Lock
