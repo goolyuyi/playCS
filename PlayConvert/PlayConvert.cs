@@ -25,7 +25,7 @@ namespace playCS.PlayConvert
     }
 
     //NOTE used for convert to primitive type
-    public class Gin : Alcohol,IConvertible
+    public class Gin : Alcohol, IConvertible
     {
         public TypeCode GetTypeCode()
         {
@@ -144,19 +144,24 @@ namespace playCS.PlayConvert
     }
 
 
-
     public class PlayConvert
     {
+        //NOTE official doc
+        // https://docs.microsoft.com/zh-cn/dotnet/standard/base-types/type-conversion
+        
+        //NOTE convert table
+        //https://docs.microsoft.com/zh-cn/dotnet/standard/base-types/conversion-tables
+
         public static void Play()
         {
             //NOTE more raw convert
             object a = Convert.ChangeType("123", typeof(int));
-            
+
             //NOTE TypeConverter more raw convert
             var converter = TypeDescriptor.GetConverter(typeof(Vodka));
             var toString = converter.CanConvertTo(typeof(string));
             var fromString = converter.CanConvertFrom(typeof(string));
-            
+
             Console.WriteLine(converter.IsValid(5));
             Console.WriteLine(toString);
             Console.WriteLine(fromString);
@@ -165,16 +170,16 @@ namespace playCS.PlayConvert
             Console.WriteLine(converter.ConvertFrom(99));
 
             var vodka = new Vodka() {Degree = 70, Brand = "life", Type = "drink"};
-            
+
             Console.WriteLine(vodka);
             Console.WriteLine(converter.ConvertToString(vodka));
-            
-            foreach(Color c in TypeDescriptor.GetConverter(typeof(Color)).GetStandardValues()) {
+
+            foreach (Color c in TypeDescriptor.GetConverter(typeof(Color)).GetStandardValues())
+            {
                 Console.WriteLine(TypeDescriptor.GetConverter(c).ConvertToString(c));
             }
 
-            var d =Convert.ChangeType(vodka, typeof(string));
-            
+            var d = Convert.ChangeType(vodka, typeof(string));
         }
     }
 }

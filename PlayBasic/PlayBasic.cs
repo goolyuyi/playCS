@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace playCS
@@ -31,6 +30,7 @@ namespace playCS
         static void AFunc(int[] a, object b)
         {
         }
+
 
 
         public static void Play()
@@ -136,7 +136,6 @@ namespace playCS
             {
                 Console.WriteLine(e);
             }
-            
         }
     }
 

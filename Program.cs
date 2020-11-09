@@ -17,19 +17,20 @@ namespace playCS
         {
             Console.WriteLine("Hello World!");
 
-            
+
             // PlayUnicorn.Play();
             // PlaySpan.Play();
-            //PlayNullable.Play();
+            // PlayNullable.Play();
             // PlayBasic.Play();
+            PlayStringFormatter.Play();
             // PlayLinq.Play();
             // PlayLazy.Play();
             // PlayConvert.PlayConvert.Play();
             //PlayIO.PlayIO.Play();
             // PlayNine.Play();
             // PlayUnsafe.Play();
-            
-            PlayPipeline.Play();
+
+            // PlayPipeline.Play();
         }
     }
 }
