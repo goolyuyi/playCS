@@ -14,7 +14,8 @@ namespace playCS
     }
 
 
-    //NOTE Indicates that an enumeration can be treated as a bit field
+    //NOTE a Flag Attr
+    //means that an enumeration can be treated as a bit field
     [Flags]
     enum AEnumWeaponStyle
     {
@@ -31,26 +32,32 @@ namespace playCS
         {
         }
 
-
-
         public static void Play()
         {
-            //NOTE new somethings
+            //new somethings
             var strList = new List<string> {"a", "b", "5555"};
+
             var cat = new Cat(null, secretName: "jelly") {Name = "ginger", Age = 10};
+
+            //new a anonymous class
+            var bat = new {Name = "xxxx"};
+            Console.WriteLine(bat.Name);
+
+            //new array
             var intArray = new int[] {1, 2, 3, 4, 5};
 
             Console.WriteLine("{0}", string.Join(",", strList));
 
-            //NOTE ^n last n (c# 8.0)
+            //^n last n (c# 8.0)
             Console.WriteLine(intArray[^1]);
 
-            //NOTE range of array(c# 8.0)
+            //range of array(c# 8.0)
             Console.WriteLine(intArray[1..2]);
 
             Console.WriteLine(intArray);
             Console.WriteLine(String.Join(",", intArray));
 
+            // data types here: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/built-in-types
             //num
             var intA = 111_222; //111_222
             var intB = 0x111_222; //111 222 in hex
@@ -62,12 +69,19 @@ namespace playCS
             var doubleA = 1.23d; //double
             var decimalA = 1.23m; //decimal 128 bit
 
+            //str
+            var str = "aaaa";
+            var ch = 'a';
+            var str_interpret = $"bbbbb{ch}";
+            var str_raw = @"https://google.com\x\y";
+
             //using will call IDispose automatically
             using (var dog = new Dog(name: "mic", age: 13))
             {
                 Console.WriteLine(dog);
             }
 
+            //set console property
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(cat.ToString());
             Console.ResetColor();
@@ -76,7 +90,7 @@ namespace playCS
             int? ni = 5;
             ni = null;
             Console.WriteLine(ni ?? 0); //means: if null then 0 
-            var c = 5 + ni; //null
+            var c = 5 + ni; //c is null
             Console.WriteLine(c);
 
             //enum
@@ -95,15 +109,17 @@ namespace playCS
             //init params
             AFunc(a: new[] {1, 2, 3, 4}, new { });
 
+            //dynamic var
             dynamic d = 1;
             var testSum = d + 3;
             Console.WriteLine(testSum);
-
             d = "string";
             Console.WriteLine(d);
 
+            //new style of switch, looks prettier
+            //aka pattern matching
+            //https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching
             var W = AEnumWeaponStyle.Knife;
-            //NOTE new style of switch, looks prettier
             var WStr = W switch
             {
                 AEnumWeaponStyle.Knife => "Tulong",
@@ -127,7 +143,7 @@ namespace playCS
                 _ => "Ok"
             };
 
-            //NOTE exception filter
+            // exception filter
             try
             {
                 throw new ArgumentOutOfRangeException("test", "err");
@@ -145,7 +161,7 @@ namespace playCS
         public string Name;
         public int Age;
 
-        //readonly is not static nor const
+        //NOTE readonly is not static nor const
         //readonly meant once the var has been written , it can not be write again
         private readonly string _secretName;
 

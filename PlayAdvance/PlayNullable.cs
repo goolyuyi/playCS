@@ -6,38 +6,29 @@ namespace playCS
 {
     public class PlayNullable
     {
-        static void Func(string? a)
-        {
-        }
-
-        static void Func2(string a)
-        {
-        }
-
-
+        //nullable 有几种静态检查方案(在 project 或 file 中设置):
+        // * disabled 
+        // * enabled: annotation + warn
+        // * annotation only: 只检查 x? 这类的null风险
+        // * warn only: 只检查 x 这类的 null 风险,而不能使用 x?
         static void Basic()
         {
             string? a = null;
             int[]? b = null;
 
-            //NOTE a is null
             Console.WriteLine(a);
-            
-            //NOTE null safe: ?.
+
+            //null safe ops
             Console.WriteLine(a?.Length);
-            
-            //NOTE ?[] null safe
             Console.WriteLine(b?[3]);
 
-            //a ?? throw new Exception();
-            //NOTE null switch
+            //null assign
             var c = a ?? "a is null";
 
-            //NOTE ??= null assign
             c = null;
             c ??= "not null";
 
-            if (c is {})
+            if (c is { })
             {
                 Console.WriteLine(c);
             }

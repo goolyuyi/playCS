@@ -6,7 +6,7 @@
 
 * [System.Collection](https://docs.microsoft.com/zh-cn/dotnet/api/system.collections?view=netcore-3.1)
 * [System.Collection.Concurrent](https://docs.microsoft.com/zh-cn/dotnet/api/system.collections.concurrent?view=netcore-3.1)
-
+ 
 ### 运算符重载
 * [可重载的运算符](https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/operators/operator-overloading)
 * 一般情况下都不需要重载运算符,因为非常容易有歧义,比如(Cat+Cat=神马东西?)
@@ -18,8 +18,8 @@ using static 可用于导入单个类的静态方法
 using static System.Math;
 ```
 ### switch
-switch 可以有很多扩展应用
-
+switch 可以做模式识别:
+https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching
 ```c#
 public static int SumPositiveNumbers(IEnumerable<object> sequence)
 {
@@ -83,4 +83,5 @@ Func<string, bool> whereClause = default;
 ```
 
 
-### readonly struct
+### string format
+https://docs.microsoft.com/en-us/dotnet/standard/base-types/formatting-types

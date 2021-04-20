@@ -15,7 +15,7 @@ namespace playCS
             UnsafeName a;
             a.name[1] = 'a';
 
-            //pointer
+            //use c like pointer here
             char* A;
             A = a.name;
             *(A + 3) = 'b';

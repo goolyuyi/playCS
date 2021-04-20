@@ -9,12 +9,9 @@ namespace playCS
             PlayLocalMethod();
             PlayLambda();
         }
-
-        delegate int DeleFunc(int x);
-
+        
         static void PlayLocalMethod()
         {
-
             //DO THIS
             int count = 0;
 
@@ -34,6 +31,8 @@ namespace playCS
             };
             Console.WriteLine(LocalLamda("aaaaa"));
         }
+
+        delegate int DeleFunc(int x);
 
         static void PlayLambda()
         {

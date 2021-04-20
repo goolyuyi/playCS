@@ -12,53 +12,54 @@ namespace playCS
         {
             var unicorn = new Unicorn() {Name = "Pony", Color = "Blue"};
 
-            //Deconstruct Unicorn
+            // unicorn impl Deconstruct
             //_ means discard
             var (n, c1, _) = unicorn;
             Console.WriteLine($"{n},{c1}");
 
-            //Enum Unicorn use IEnumerable 
+            //unicorn impl IEnumerable 
             foreach (var s in unicorn)
             {
                 Console.WriteLine(s);
             }
 
-            //Equal Unicorn
+            //unicorn impl IEquatable
             Console.WriteLine(unicorn == null);
 
-            //Clone Unicorn
+            //unicorn impl ICloneable
             var c = new Unicorn(unicorn);
 
-            //Compare Unicorn
+            //unicorn impl IComparable
             c.Name = "YiJiang";
             Console.WriteLine(c.CompareTo(unicorn) > 0 ? "bigger" : "smaller");
 
-            //Partial Unicorn
+            //unicorn has partial impl
             unicorn.Barking();
 
-            //Mixin Unicorn (c# 8.0)
+            //interface mixed in with unicorn (c# 8.0)
             if (unicorn is Runner runable)
             {
+                //Run impl in interface def
                 runable.Run(5);
             }
 
-            unicorn.Stop();
+            // unicorn.Stop();
 
-            //Indexer Unicorn
+            //unicorn impl this[int i]
             Console.WriteLine(unicorn[5]);
 
-            //Any Param Unicorn
+            //pass many params in
             unicorn.AnyParams(1, 2, 3, "aaa", "bbb");
 
-            //Convert Unicorn
+            //unicorn impl implicit byte[]
             //NOTE Very Ambiguity,DONT USE OFTEN! Only use it on mathematically purpose
             byte[] b = unicorn;
+            
+            //unicorn impl explicit(byte[])
             Unicorn bb = (Unicorn) b;
 
-            //Operator Unicorn
+            //unicorn impl op+
             Console.WriteLine(unicorn + c);
-
-            //异常筛选
         }
     }
 
@@ -92,8 +93,11 @@ namespace playCS
 
 
     public partial class Unicorn :
-        //NOTE unicorn acts like a c# superhero!
+        // unicorn acts like a c# superhero!
+
+        //use with
         IDisposable,
+        //use foreach
         IEnumerable<string>,
         IEquatable<Unicorn>,
         ICloneable,
@@ -118,6 +122,7 @@ namespace playCS
         }
 
         #region #Equality
+
         //NOTE 至少要实现以下3个方法
         // https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/statements-expressions-operators/how-to-define-value-equality-for-a-type
         //rider 自动生成

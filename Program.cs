@@ -1,7 +1,5 @@
 ﻿using System;
 using playCS.PlayIO;
-using playCS.PlayParallel;
-using playCS.playThreadsWorld;
 
 namespace playCS
 {
@@ -16,21 +14,20 @@ namespace playCS
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-
-
+            
+            // PlayBasic.Play();
             // PlayUnicorn.Play();
             // PlaySpan.Play();
             // PlayNullable.Play();
-            // PlayBasic.Play();
             PlayStringFormatter.Play();
             // PlayLinq.Play();
             // PlayLazy.Play();
             // PlayConvert.PlayConvert.Play();
-            //PlayIO.PlayIO.Play();
+            // PlayIO.PlayIO.Play();
             // PlayNine.Play();
             // PlayUnsafe.Play();
-
             // PlayPipeline.Play();
+            // PlayRegex.PlayRegex.Play();
         }
     }
 }

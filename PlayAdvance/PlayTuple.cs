@@ -18,7 +18,7 @@ namespace playCS
             Console.WriteLine(names3.Last);
 
             //deconstruct
-            (string firstName, string lastName) = names3;
+            (var firstName, string lastName) = names3;
             
             // _ means discard
             var (_, last) = names3;

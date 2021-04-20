@@ -92,7 +92,7 @@ namespace playCS
             var f = x.ToString("C3", ci);
             Console.WriteLine(f);
 
-            Console.WriteLine($"{x:n}");
+            Console.WriteLine($"{x:n5}");
         }
 
         public static void Play()
