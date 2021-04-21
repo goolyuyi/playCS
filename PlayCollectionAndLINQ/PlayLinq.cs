@@ -283,7 +283,7 @@ namespace playCS
             StudentQuerySelectMany();
             StudentQueryMethodInput();
             StudentQueryGroup();
-            StudentQueryNest();
+            StudentQueryNestGroup();
             StudentQuerySub();
         }
 
@@ -304,8 +304,7 @@ namespace playCS
             }
         }
 
-        //TODO
-        private static void StudentQueryNest()
+        private static void StudentQueryNestGroup()
         {
             var query = from s in students
                 group s by s.Last[0]
@@ -378,8 +377,8 @@ namespace playCS
 
         public static void Play()
         {
-            // PlayStudentData();
-            // LookupPlay();
+            PlayStudentData();
+            LookupPlay();
             PlayJoin();
         }
     }

@@ -11,8 +11,8 @@ namespace playCS.PlayIO
     {
         public static void Play()
         {
-            // PlayDirectoryInfo();
-            // PlayFile();
+            PlayDirectoryInfo();
+            PlayFile();
             PlayPipe();
         }
 

@@ -19,11 +19,13 @@ namespace playCS
             // PlayUnicorn.Play();
             // PlaySpan.Play();
             // PlayNullable.Play();
-            PlayStringFormatter.Play();
+            // PlayStringFormatter.Play();
+            // PlayReflection.Play();
             // PlayLinq.Play();
             // PlayLazy.Play();
             // PlayConvert.PlayConvert.Play();
             // PlayIO.PlayIO.Play();
+            PlayPipeline.Play();
             // PlayNine.Play();
             // PlayUnsafe.Play();
             // PlayPipeline.Play();

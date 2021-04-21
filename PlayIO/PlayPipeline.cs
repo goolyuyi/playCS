@@ -11,7 +11,7 @@ namespace playCS.PlayIO
     {
         static async Task ReadAFile()
         {
-            var blogPath = Path.GetFullPath("./PlayIO/test.md");
+            var blogPath = Path.GetFullPath("./PlayIO/test.data");
             var fs = new FileStream(blogPath, FileMode.Open, FileAccess.Read);
             var fsr = new StreamReader(fs);
             Console.WriteLine(await fsr.ReadLineAsync());

@@ -52,13 +52,13 @@ namespace playCS
     {
         public static void Play()
         {
-            // PlayAssembly();
-            // P2();
-            // PlayMethods();
+            PlayAssembly();
+            PlayType();
+            PlayMethods();
             PlayMembers();
         }
 
-        private static void PlayMembers()
+        static void PlayMembers()
         {
             var t = typeof(SomeMethods);
             var ms = t.GetMembers();
@@ -68,7 +68,7 @@ namespace playCS
             }
         }
 
-        public static void P2()
+        static void PlayType()
         {
             var t = typeof(object);
             Console.WriteLine(t);
@@ -77,7 +77,7 @@ namespace playCS
             var m = ms[0];
         }
 
-        public static void RainbowLine(params object[] ins)
+        static void RainbowLine(params object[] ins)
         {
             foreach (var inn in ins)
             {
@@ -109,12 +109,12 @@ namespace playCS
 
         static void PlayAssembly()
         {
-            var cur = Assembly.GetCallingAssembly();
-            Console.WriteLine(cur.Location);
-            Console.WriteLine(cur.Modules);
-            var curm = cur.GetModules()[0];
-            Console.WriteLine(curm.Name);
-            var curts = curm.GetTypes();
+            var callingAssembly = Assembly.GetCallingAssembly();
+            Console.WriteLine(callingAssembly.Location);
+            Console.WriteLine(callingAssembly.Modules);
+            var callingModules = callingAssembly.GetModules()[0];
+            Console.WriteLine(callingModules.Name);
+            var curts = callingModules.GetTypes();
         }
     }
 }

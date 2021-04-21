@@ -9,7 +9,7 @@ namespace playCS.PlayGeneric
 
     class Generic2<T> where T : class, IComparable<T>
     {
-        public static bool Bigger(T a1, T a2)
+        public static bool Bigger( T a1, T a2)
         {
             return a1.CompareTo(a2) > 0;
         }

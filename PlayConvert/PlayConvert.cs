@@ -146,10 +146,11 @@ namespace playCS.PlayConvert
 
     public class PlayConvert
     {
-        //NOTE official doc
+        // official doc
+        // introduced all converting method of c#
         // https://docs.microsoft.com/zh-cn/dotnet/standard/base-types/type-conversion
 
-        //NOTE convert table
+        // convert table
         //https://docs.microsoft.com/zh-cn/dotnet/standard/base-types/conversion-tables
 
         public static void Play()
