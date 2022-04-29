@@ -1,5 +1,6 @@
 ﻿using System;
 using playCS.PlayIO;
+using playWeb;
 
 namespace playCS
 {
@@ -25,11 +26,12 @@ namespace playCS
             // PlayLazy.Play();
             // PlayConvert.PlayConvert.Play();
             // PlayIO.PlayIO.Play();
-            PlayPipeline.Play();
+            // PlayPipeline.Play();
             // PlayNine.Play();
             // PlayUnsafe.Play();
             // PlayPipeline.Play();
             // PlayRegex.PlayRegex.Play();
+            PlayDiagnostics.Play();
         }
     }
 }
